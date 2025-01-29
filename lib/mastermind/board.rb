@@ -20,3 +20,7 @@ def display_board
   puts '-----------'
   puts "Feedback: #{board[4]} #{board[5]} #{board[6]} #{board[7]}"
 end
+
+def update_cell(index, _value)
+  @board[index] = value
+end
