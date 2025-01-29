@@ -1,14 +1,15 @@
 Class Board
+  COLORS = {
+    1 => " 1 ".colorize(:red),
+    2 => " 2 ".colorize(:blue),
+    3 => " 3 ".colorize(:green),
+    4 => " 4 ".colorize(:yellow),
+    5 => " 5 ".colorize(:magenta),
+    6 => " 6 ".colorize(:cyan),
+    }
+
   def initialize
     @board = Array.new(8, " ") #create a board with 8 nil elements
-    COLORS = {
-    1 => " 1 ".colorize(red:),
-    2 => " 2 ".colorize(blue:),
-    3 => " 3 ".colorize(green:),
-    4 => " 4 ".colorize(yellow:),
-    5 => " 5 ".colorize(magenta:),
-    6 => " 6 ".colorize(cyan:),
-    }
   end
 
   def display_board()
