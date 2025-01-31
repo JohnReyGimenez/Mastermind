@@ -18,9 +18,24 @@ class Board
     @board = Array.new(8, ' ') # create a board with 8 nil elements
   end
 
+  def display_instructions
+    instructions = <<-HEREDOC
+     Welcome to Mastermind!
+    The goal of the game is to guess the secret code or create a code for the computer to guess.
+    - If you're the code guesser, you have 10 attempts to guess the code.
+    - If you're the code maker, the computer will try to guess your code.
+    Feedback will be provided after each guess:
+    - Black Peg: Correct color in the correct position.
+    - White Peg: Correct color but in the wrong position.
+
+
+    HEREDOC
+    puts instructions
+  end
+
   def display_board
-    puts " #{COLORS[@board[0]]} #{COLORS[@board[1]]} #{COLORS[@board[2]]} #{COLORS[@board[3]]}"
-    puts ' -----------'
+    puts "Code:     #{COLORS[@board[0]]} #{COLORS[@board[1]]} #{COLORS[@board[2]]} #{COLORS[@board[3]]}"
+    puts '         -------------'
     puts "Feedback: #{COLORS[@board[4]]} #{COLORS[@board[5]]} #{COLORS[@board[6]]} #{COLORS[@board[7]]}"
   end
 
