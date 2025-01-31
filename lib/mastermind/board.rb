@@ -19,17 +19,42 @@ class Board
   end
 
   def display_instructions
-    instructions = <<-HEREDOC
-     Welcome to Mastermind!
-    The goal of the game is to guess the secret code or create a code for the computer to guess.
-    - If you're the code guesser, you have 10 attempts to guess the code.
-    - If you're the code maker, the computer will try to guess your code.
-    Feedback will be provided after each guess:
-    - Black Peg: Correct color in the correct position.
-    - White Peg: Correct color but in the wrong position.
+    instructions = <<~HEREDOC
+      =============================================
+      Welcome to Mastermind!
+      =============================================
 
-    To input your guess, your code, or your feedback the game follows a simple numbering somethinf2
-    [1] [2] [3] [4]
+      The goal of the game is to guess the secret code or create a code for the computer to guess.
+
+      Roles:
+      - If you're the code guesser, you have 10 attempts to guess the code.
+      - If you're the code maker, the computer will try to guess your code.
+
+      Feedback Rules:
+      - Black Peg: Correct color in the correct position.
+      - White Peg: Correct color but in the wrong position.
+
+      How to Play:
+      - To input your guess or code, use the following format:
+        [1] [2] [3] [4]
+        Each number represents a color:
+          1: Red
+          2: Blue
+          3: Green
+          4: Yellow
+          5: Magenta
+          6: Cyan
+
+      Example:
+      - If you want to guess Red, Blue, Green, Yellow, input:
+        1 2 3 4
+
+      For feedbacking:
+      1. Represents: White
+      2. Represents: Black
+       Example:
+      - If you want to feedback two whites and two blacks
+        1 1 2 2
     HEREDOC
     puts instructions
   end
