@@ -28,7 +28,8 @@ class Board
     - Black Peg: Correct color in the correct position.
     - White Peg: Correct color but in the wrong position.
 
-
+    To input your guess, your code, or your feedback the game follows a simple numbering somethinf2
+    [1] [2] [3] [4]
     HEREDOC
     puts instructions
   end
