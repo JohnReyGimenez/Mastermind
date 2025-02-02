@@ -17,6 +17,8 @@ class Game
           4: #{'Yellow'.colorize(:yellow)}
           5: #{'Magenta'.colorize(:magenta)}
           6: #{'Cyan'.colorize(:cyan)}"
+      user_input = gets.strip
+      index = user_input.input_to_index
     end
   end
 end
