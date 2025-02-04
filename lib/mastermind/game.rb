@@ -21,4 +21,20 @@ class Game
       index = user_input.input_to_index
     end
   end
+
+  def choose_role
+    if player == 'guesser'
+      'guesser'
+    else
+      'maker'
+    end
+  end
 end
+
+game = Game.new
+
+game.play_game
+
+# add function to determine if the player has won
+# add function to see if the player or computer has ran out of guesses
+#
