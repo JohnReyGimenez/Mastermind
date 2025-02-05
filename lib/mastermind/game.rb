@@ -4,7 +4,8 @@ require 'colorize'
 
 class Game
   def input_to_index(user_input)
-    user_input.to_i - 1
+    input = user_input.to_a
+    input.each {|n| n.to_i}
   end
 
   def play_game
@@ -28,6 +29,18 @@ class Game
     else
       'maker'
     end
+  end
+
+  def valid_move?
+    if player == 'guesser'
+      if user_input != [1..6]
+        return false
+      end
+    end
+  elsif player == 'maker'
+      if user_input != [1..4]
+        return false
+      end
   end
 end
 
