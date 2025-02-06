@@ -10,6 +10,9 @@ class CodeGuesser
       puts 'Enter your guess(4 numbers between 1 and 6, separated by spaces):'
       user_input = gets.chomp
       guess = input_to_index(user_input)
+
+      update_guess(guess) if valid_move?
+
     end
   end
 
