@@ -4,10 +4,17 @@ require 'colorize'
 
 class Game
   def input_to_index(user_input)
-    user_input.split.map
+    user_input.split.map.to_i
   end
 
   def play_game
+    role = choose_role
+    if role == 'guesser'
+      play_as_guesser
+    else
+      
+    end
+  end
     loop do
       board.display_board
       puts "input your code
@@ -23,11 +30,7 @@ class Game
   end
 
   def choose_role
-    if player == 'guesser'
-      'guesser'
-    else
-      'maker'
-    end
+    gets.strip
   end
 
   def valid_move?
