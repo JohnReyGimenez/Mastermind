@@ -12,6 +12,9 @@ class CodeGuesser
   end
 
   def update_guess(guess)
+    guess.each_with_index do |value, index|
+      board.update_cell(index, value)
+    end
   end
 end
 
