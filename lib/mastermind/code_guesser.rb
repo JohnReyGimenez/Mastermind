@@ -5,7 +5,7 @@ class CodeGuesser
     secret_code = Random.new.rand(1..6)
     attempts = 10
 
-    while attempts > 0
+    while attempts.positive?
       board.display_board
       puts 'Enter your guess(4 numbers between 1 and 6, separated by spaces):'
       user_input = gets.chomp
@@ -13,6 +13,10 @@ class CodeGuesser
 
       update_guess(guess) if valid_move?
 
+      puts 'you guessed the code!' if guess == secret_code
+
+      attempts -= 1
+      puts "attempts remaining: #{attempts}"
     end
   end
 
