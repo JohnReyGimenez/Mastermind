@@ -7,7 +7,9 @@ class CodeGuesser
 
     while attempts > 0
       board.display_board
-      puts 'Enter your guess:'
+      puts 'Enter your guess(4 numbers between 1 and 6, separated by spaces):'
+      user_input = gets.chomp
+      guess = input_to_index(user_input)
     end
   end
 
