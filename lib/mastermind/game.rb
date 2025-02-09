@@ -9,11 +9,9 @@ class Game
 
   def play_game
     role = choose_role
-    if role == 'guesser'
-      play_as_guesser
-    else
+    return unless role == 'guesser'
 
-    end
+    play_as_guesser
   end
   loop do
     board.display_board
@@ -29,7 +27,13 @@ class Game
   end
 
   def choose_role
-    gets.strip
+    puts 'Choose your role: (guesser/maker)'
+    role = gets.chomp.downcase
+    until [guesser, maker].include?(role)
+      puts 'invalid choice. please enter "guesser" or "maker".'
+      role = gets.chomp.downcase
+    end
+    role
   end
 end
 
