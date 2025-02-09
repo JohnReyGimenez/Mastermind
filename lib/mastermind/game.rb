@@ -12,19 +12,20 @@ class Game
   end
 
   def play_game
-    role = choose_role
-    return unless role == 'guesser'
+    loop do
+      board.display_board
+      role = choose_role
 
-    play_as_guesser
-  end
-  loop do
-    board.display_board
-    role = choose_role
+      if role == 'guesser'
+        @CodeGuesser.play_as_guesser
+      else
+        @CodeMaker.play_as_maker
+      end
 
-    @CodeGuesser.play_as_guesser if role == 'guesser'
-
-    user_input = gets.strip
-    guess = input_to_index(user_input)
+      puts 'do you wanna play again? (yes/no)'
+      play_again = gets.chomp.downcase
+      break unless play_again == 'yes'
+    end
   end
 
   def choose_role
