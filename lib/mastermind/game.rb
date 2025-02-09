@@ -12,37 +12,24 @@ class Game
     if role == 'guesser'
       play_as_guesser
     else
-      
+
     end
   end
-    loop do
-      board.display_board
-      puts "input your code
+  loop do
+    board.display_board
+    puts "input your code
           1: #{'Red'.colorize(:red)}
           2: #{'Blue'.colorize(:blue)}
           3: #{'Green'.colorize(:green)}
           4: #{'Yellow'.colorize(:yellow)}
           5: #{'Magenta'.colorize(:magenta)}
           6: #{'Cyan'.colorize(:cyan)}"
-      user_input = gets.strip
-      guess = input_to_index(user_input)
-    end
+    user_input = gets.strip
+    guess = input_to_index(user_input)
   end
 
   def choose_role
     gets.strip
-  end
-
-  def valid_move?
-    if player == 'guesser'
-      if user_input != [1..6]
-        return false
-      end
-    end
-  elsif player == 'maker'
-      if user_input != [1..4]
-        return false
-      end
   end
 end
 

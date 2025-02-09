@@ -13,11 +13,16 @@ class CodeGuesser
 
       update_guess(guess) if valid_move?
 
-      puts 'you guessed the code!' if guess == secret_code
+      if guess == secret_code
+        puts 'you guessed the code!'
+        return
+      end
 
       attempts -= 1
       puts "attempts remaining: #{attempts}"
     end
+
+    puts "you have ran out of guesses, the secret code was #{secret_code.join(' ')}"
   end
 
   def update_guess(guess)
@@ -25,6 +30,11 @@ class CodeGuesser
       board.update_cell(index, value)
     end
   end
+
+  def valid_move?(guess)
+    if guess.size == 4
+      guess.all? {|num| num.between?(1, 6)}
+    end
 end
 
 # function - if player has chosen code guesser return true
