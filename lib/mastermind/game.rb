@@ -3,6 +3,10 @@
 require 'colorize'
 
 class Game
+  def initialize
+    @board = board
+  end
+
   def input_to_index(user_input)
     user_input.split.map(&:to_i)
   end
@@ -15,13 +19,10 @@ class Game
   end
   loop do
     board.display_board
-    puts "input your code
-          1: #{'Red'.colorize(:red)}
-          2: #{'Blue'.colorize(:blue)}
-          3: #{'Green'.colorize(:green)}
-          4: #{'Yellow'.colorize(:yellow)}
-          5: #{'Magenta'.colorize(:magenta)}
-          6: #{'Cyan'.colorize(:cyan)}"
+    role = choose_role
+
+    @CodeGuesser.play_as_guesser if role == 'guesser'
+
     user_input = gets.strip
     guess = input_to_index(user_input)
   end
@@ -29,7 +30,7 @@ class Game
   def choose_role
     puts 'Choose your role: (guesser/maker)'
     role = gets.chomp.downcase
-    until [guesser, maker].include?(role)
+    until %w[guesser maker].include?(role)
       puts 'invalid choice. please enter "guesser" or "maker".'
       role = gets.chomp.downcase
     end
