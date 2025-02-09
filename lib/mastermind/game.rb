@@ -4,7 +4,7 @@ require 'colorize'
 
 class Game
   def input_to_index(user_input)
-    user_input.split.map.to_i
+    user_input.split.map(&:to_i)
   end
 
   def play_game
