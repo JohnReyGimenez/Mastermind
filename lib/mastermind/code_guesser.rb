@@ -40,6 +40,11 @@ class CodeGuesser
 
     guess.all? { |num| num.between?(1, 6) } # checks if guess is between 1 and 6
   end
+
+  def generate_feedback(secret_code, guess)
+    # creates nested array of pairs from the secret code  and the guess
+    exact_matches = secret_code.zip(guess).count { |s, g| s == g } # counts how many pairs are exact matches
+    correct_colors = (secret_code & guess).size - exact_matches # gives exact number of correct colors in wrong position
+    [:black] * exact_matches + [:white] * correct_colors # creates am array of of feedback symbols
+  end
 end
-# function - if player has chosen code guesser return true
-# codeguesser game function - main loop for code guesser
