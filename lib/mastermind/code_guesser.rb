@@ -15,7 +15,14 @@ class CodeGuesser
       user_input = gets.chomp
       guess = input_to_index(user_input)
 
-      update_guess(guess) if valid_move?
+      if valid_move?(guess)
+        update_guess(guess)
+        feedback = generate_feedback(secret_code, guess)
+        @board.update_cell(4, feedback[0])
+        @board.update_cell(5, feedback[1])
+        @board.update_cell(6, feedback[2])
+        @board.update_cell(7, feedback[3])
+      end
 
       if guess == secret_code
         puts 'you guessed the code!'
