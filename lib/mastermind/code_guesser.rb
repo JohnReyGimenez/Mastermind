@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class CodeGuesser
+  def initialize
+    @board = board
+  end
+
   def play_as_guesser
     secret_code = Random.new.rand(1..6)
     attempts = 10
@@ -32,10 +36,10 @@ class CodeGuesser
   end
 
   def valid_move?(guess)
-    if guess.size == 4
-      guess.all? {|num| num.between?(1, 6)}
-    end
-end
+    return unless guess.size == 4
 
+    guess.all? { |num| num.between?(1, 6) } # checks if guess is between 1 and 6
+  end
+end
 # function - if player has chosen code guesser return true
 # codeguesser game function - main loop for code guesser
