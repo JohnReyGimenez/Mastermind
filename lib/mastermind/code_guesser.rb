@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class CodeGuesser
-  def initialize
+  def initialize(board)
     @board = board
   end
 
   def play_as_guesser
-    secret_code = array.new(4) { rand(1..6) }
+    secret_code = Array.new(4) { rand(1..6) }
     attempts = 10
 
     while attempts.positive?
