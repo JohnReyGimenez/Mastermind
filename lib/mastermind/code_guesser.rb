@@ -43,9 +43,7 @@ class CodeGuesser
   end
 
   def valid_move?(guess)
-    return unless guess.size == 4
-
-    guess.all? { |num| num.between?(1, 6) } # checks if guess is between 1 and 6
+    guess.size == 4 && guess.all? { |num| num.between?(1, 6) } # checks if guess is between 1 and 6
   end
 
   def generate_feedback(secret_code, guess)
