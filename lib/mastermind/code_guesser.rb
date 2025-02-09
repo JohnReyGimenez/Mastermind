@@ -6,11 +6,11 @@ class CodeGuesser
   end
 
   def play_as_guesser
-    secret_code = Random.new.rand(1..6)
+    secret_code = array.new(4) { rand(1..6) }
     attempts = 10
 
     while attempts.positive?
-      board.display_board
+      @board.display_board
       puts 'Enter your guess(4 numbers between 1 and 6, separated by spaces):'
       user_input = gets.chomp
       guess = input_to_index(user_input)
@@ -38,7 +38,7 @@ class CodeGuesser
 
   def update_guess(guess)
     guess.each_with_index do |value, index|
-      board.update_cell(index, value)
+      @board.update_cell(index, value)
     end
   end
 
