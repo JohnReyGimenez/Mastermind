@@ -5,6 +5,8 @@ require 'colorize'
 class Game
   def initialize
     @board = board
+    @code_guesser = @CodeGuesser.new(board)
+    @code_maker = @CodeMaker.new(board)
   end
 
   def input_to_index(user_input)
