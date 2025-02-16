@@ -42,13 +42,13 @@ class CodeMaker
     new_guess = last_guess.dup
 
     if feedback[0..1].any? { |peg| %i[black white].include?(peg) }
-      new_guess[0] = rand(1..6) unless feedback[0] == :black
-      new_guess[1] = rand(1..6) unless feedback[1] == :black
+      new_guess[0] = rand(1..6).to_a.reject { |n| n == last_guess[0] }.sample unless feedback[0] == :black
+      new_guess[1] = rand(1..6).to_a.reject { |n| n == last_guess[1] }.sample unless feedback[1] == :black
     end
 
     if feedback[2..3].any? { |peg| %i[black white].include?(peg) }
-      new_guess[2] = rand(1..6) unless feedback[2] == :black
-      new_guess[3] = rand(1..6) unless feedback[3] == :black
+      new_guess[2] = rand(1..6).to_a.reject { |n| n == last_guess[2] }.sample unless feedback[2] == :black
+      new_guess[3] = rand(1..6).to_a.reject { |n| n == last_guess[3] }.sample unless feedback[3] == :black
     end
     new_guess
   end
@@ -56,7 +56,7 @@ class CodeMaker
   def get_player_feedback(guess)
     loop do
       puts "Provide feedback for the computer's guess (e.g., '1 1 2 2' for two whites and two blacks):"
-      feedback = gets.chomp.split.map { |num| num.to_i }
+      feedback = gets.chomp.split.map(&:to_i)
       return feedback.map { |n| n == 1 ? :white : :black } if valid_feedback?(feeback)
 
       puts 'invalid input please enter 4 numbers (1 for white, 2 for black).'
@@ -70,7 +70,7 @@ class CodeMaker
   def get_player_code
     loop do
       puts 'Enter your secret code (4 numbers between 1 to 6 seperated by spaces):'
-      code = gets.chomp.split.map { |num| num.to_i }
+      code = gets.chomp.split.map(&:to_i)
       return code if valid_code?(code)
 
       puts 'Invalid code please try again'
@@ -85,7 +85,3 @@ class CodeMaker
     computer_code = secret_code
   end
 end
-
-#
-#
-#
