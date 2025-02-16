@@ -5,7 +5,7 @@ class CodeMaker
     @board = board
     @attempts = 10
     @previous_guesses = []
-    @possible_codes = (1..6).to_a.repeated_permutation(4).to_a # array of all possible 4 digit codes
+    @possible_codes = (1..6).to_a.repeated_permutation(4).to_a # all possible 4 digit codes
     # from num 1 to 6
   end
 
@@ -50,6 +50,14 @@ class CodeMaker
       new_guess[2] = rand(1..6).to_a.reject { |n| n == last_guess[2] }.sample unless feedback[2] == :black
       new_guess[3] = rand(1..6).to_a.reject { |n| n == last_guess[3] }.sample unless feedback[3] == :black
     end
+
+    feedback.each_with_index do |peg, i|
+      if peg == :white
+        swap_index = (i + 1) % 4
+        new_guess[i], new_guess[swap_index] = new_guess[swap_index], new_guess[i]
+      end
+    end
+
     new_guess
   end
 
