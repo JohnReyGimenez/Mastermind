@@ -30,6 +30,11 @@ class CodeMaker
   end
 
   def refined_guess(feedback)
+    if feedback.any? { |peg| %i[black white].include?(peg) }
+      refine_based_on_feedback
+    else
+      random_guess
+    end
   end
 
   def refine_based_on_feedback(feedback)
