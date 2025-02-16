@@ -21,7 +21,7 @@ class CodeMaker
   end
 
   def random_guess
-    [*1..6].sample
+    Array.new(4) { rand(1..6) }
   end
 
   def refined_guess
@@ -32,6 +32,10 @@ class CodeMaker
 
   def get_player_code
     gets.chomp.to_a
+  end
+
+  def won?
+    computer_code = secret_code
   end
 end
 
