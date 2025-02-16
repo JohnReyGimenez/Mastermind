@@ -24,14 +24,24 @@ class CodeMaker
     Array.new(4) { rand(1..6) }
   end
 
-  def refined_guess
+  def refined_guess(feedback)
+  end
+
+  def refine_based_on_feedback(feedback)
   end
 
   def get_player_feedback
   end
 
   def get_player_code
-    gets.chomp.to_a
+    loop do
+      puts 'Enter your secret code (4 numbers between 1 to 6 seperated by spaces):'
+      code = gets.chomp.split.map.to_i
+    end
+  end
+
+  def valid_code?
+    code.size == 4 && code.all? { |num| num.between?(1, 6) }
   end
 
   def won?
