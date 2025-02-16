@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CodeMaker
-  def initialize
+  def initialize(board)
     @board = board
     @attempts = 10
     @previous_guesses = []
@@ -9,20 +9,34 @@ class CodeMaker
     # from num 1 to 6
   end
 
-  def play_as_maker
+  def play_as_maker(difficulty = :medium)
+    random_guesses = case difficulty
+                     when :easy then 6
+                     when :medium then 4
+                     when :hard then 2
+                     end
     @attempts = 10
     secret_code = get_player_code
 
     while attempts.positive?
-      guess = if @previous_guesses < 5
+      guess = if @previous_guesses.size < random_guesses
                 random_guess
               else
-                refine_based_on_feedback
+                refine_based_on_feedback(@previous_guesses.last[:feedback])
               end
-      @board.display_board
-      random_guess while attempts > 5
+      puts "Computers guess: #{guess.join(' ')}"
+      feedback = get_player_feedback(guess)
+      @previous_guesses << { guess: guess, feedback: feedback }
+
+      if won?(secret_code, guess)
+        puts "the computer guess your code! #{guess.join(' ')}"
+        return
+      end
+
+      @attempts -= 1
+      puts "Remaining attempts: #{@attempts}"
     end
-    @attempts -= 1
+    puts 'the computer has failed in guessing your secret code. You win!!'
   end
 
   def random_guess
@@ -65,7 +79,7 @@ class CodeMaker
     loop do
       puts "Provide feedback for the computer's guess (e.g., '1 1 2 2' for two whites and two blacks):"
       feedback = gets.chomp.split.map(&:to_i)
-      return feedback.map { |n| n == 1 ? :white : :black } if valid_feedback?(feeback)
+      return feedback.map { |n| n == 1 ? :white : :black } if valid_feedback?(feedback)
 
       puts 'invalid input please enter 4 numbers (1 for white, 2 for black).'
     end
@@ -89,7 +103,7 @@ class CodeMaker
     code.size == 4 && code.all? { |num| num.between?(1, 6) }
   end
 
-  def won?
-    computer_code = secret_code
+  def won?(secret_code, guess)
+    computer_code == secret_code
   end
 end
