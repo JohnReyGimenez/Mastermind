@@ -38,6 +38,19 @@ class CodeMaker
   end
 
   def refine_based_on_feedback(feedback)
+    last_guess = @previous_guesses.last[:guess]
+    new_guess = last_guess.dup
+
+    if feedback[0..1].any? { |peg| %i[black white].include?(peg) }
+      new_guess[0] = rand(1..6) unless feedback[0] == :black
+      new_guess[1] = rand(1..6) unless feedback[1] == :black
+    end
+
+    if feedback[2..3].any? { |peg| %i[black white].include?(peg) }
+      new_guess[2] = rand(1..6) unless feedback[2] == :black
+      new_guess[3] = rand(1..6) unless feedback[3] == :black
+    end
+    new_guess
   end
 
   def get_player_feedback(guess)
