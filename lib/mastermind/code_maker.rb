@@ -14,6 +14,11 @@ class CodeMaker
     secret_code = get_player_code
 
     while attempts.positive?
+      guess = if @previous_guesses < 5
+                random_guess
+              else
+                refine_based_on_feedback
+              end
       @board.display_board
       random_guess while attempts > 5
     end
@@ -36,11 +41,14 @@ class CodeMaker
   def get_player_code
     loop do
       puts 'Enter your secret code (4 numbers between 1 to 6 seperated by spaces):'
-      code = gets.chomp.split.map.to_i
+      code = gets.chomp.split.map { |num| num.to_i }
+      return code if valid_code?(code)
+
+      puts 'Invalid code please try again'
     end
   end
 
-  def valid_code?
+  def valid_code?(code)
     code.size == 4 && code.all? { |num| num.between?(1, 6) }
   end
 
