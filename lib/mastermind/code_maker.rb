@@ -39,6 +39,9 @@ class CodeMaker
     loop do
       puts "Provide feedback for the computer's guess (e.g., '1 1 2 2' for two whites and two blacks):"
       feedback = gets.chomp.split.map { |num| num.to_i }
+      return feedback.map { |n| n == 1 ? :white : :black } if valid_feedback?(feeback)
+
+      puts 'invalid input please enter 4 numbers (1 for white, 2 for black).'
     end
   end
 
