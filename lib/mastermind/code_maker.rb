@@ -35,7 +35,15 @@ class CodeMaker
   def refine_based_on_feedback(feedback)
   end
 
-  def get_player_feedback
+  def get_player_feedback(guess)
+    loop do
+      puts "Provide feedback for the computer's guess (e.g., '1 1 2 2' for two whites and two blacks):"
+      feedback = gets.chomp.split.map { |num| num.to_i }
+    end
+  end
+
+  def valid_feedback?(feedback)
+    feedback.size == 4 && feedback.all? { |n| [1, 2].include?(n) }
   end
 
   def get_player_code
