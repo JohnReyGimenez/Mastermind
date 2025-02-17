@@ -16,6 +16,7 @@ class Board
 
   def initialize
     @board = Array.new(8, ' ') # create a board with 8 nil elements
+    @secret_code = Array.new(4, ' ')
   end
 
   def display_instructions
@@ -65,27 +66,19 @@ class Board
     puts instructions
   end
 
-  def display_board
-    puts "Code:     #{COLORS[@board[0]]} #{COLORS[@board[1]]} #{COLORS[@board[2]]} #{COLORS[@board[3]]}"
+  def display_board(show_secret_code: false)
+    if show_secret_code
+      puts "Secret Code: #{COLORS[@secret_code[0]]} #{COLORS[@secret_code[1]]}
+      #{COLORS[@secret_code[2]]} #{COLORS[@secret_code[3]]}"
+    end
+    puts "Code:     #{COLORS[@board[0]]} #{COLORS[@board[1]]}
+    #{COLORS[@board[2]]} #{COLORS[@board[3]]}"
     puts '         -------------'
-    puts "Feedback: #{COLORS[@board[4]]} #{COLORS[@board[5]]} #{COLORS[@board[6]]} #{COLORS[@board[7]]}"
+    puts "Feedback: #{COLORS[@board[4]]} #{COLORS[@board[5]]}
+    #{COLORS[@board[6]]} #{COLORS[@board[7]]}"
   end
 
   def update_cell(index, value)
     @board[index] = value
   end
 end
-
-board = Board.new
-
-board.update_cell(0, 1) # Red
-board.update_cell(1, 2) # Blue
-board.update_cell(2, 3) # Green
-board.update_cell(3, 4) # Yellow
-board.update_cell(4, 5)
-board.update_cell(5, 6)
-board.update_cell(6, 7)
-board.update_cell(7, 8)
-
-board.display_board
-board.display_instructions
