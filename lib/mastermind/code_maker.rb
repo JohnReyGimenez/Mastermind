@@ -18,7 +18,7 @@ class CodeMaker
     @attempts = 10
     secret_code = get_player_code
 
-    while attempts.positive?
+    while @attempts.positive?
       guess = if @previous_guesses.size < random_guesses
                 random_guess
               else
