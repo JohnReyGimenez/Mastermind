@@ -80,7 +80,7 @@ class Board
 
   def feedback_to_colors(feedback)
     feedback.map do |peg|
-      case peg
+      case peg 
       when :black '●'.colorize(:black)
       when :white '●'.colorize(:white)
       else
@@ -91,5 +91,9 @@ class Board
 
   def update_cell(index, value)
     @board[index] = value
+  end
+
+  def clear_screen
+    system('clear') || system('cls')
   end
 end
