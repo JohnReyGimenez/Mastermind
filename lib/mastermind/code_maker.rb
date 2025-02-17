@@ -112,4 +112,11 @@ class CodeMaker
   def won?(secret_code, guess)
     guess == secret_code
   end
+
+  def choose_difficuly
+    puts 'Choose difficulty (easy, medium, hard):'
+    difficulty = gets.chomp.downcase.to_sym
+    puts 'Invalid choice. Enter "easy", "medium", or "hard"' until %i[easy medium hard].include?(difficulty)
+    difficulty
+  end
 end
