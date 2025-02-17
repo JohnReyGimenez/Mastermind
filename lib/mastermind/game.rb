@@ -3,10 +3,10 @@
 require 'colorize'
 
 class Game
-  def initialize
+  def initialize(board)
     @board = board
-    @code_guesser = @CodeGuesser.new(board)
-    @code_maker = @CodeMaker.new(board)
+    @code_guesser = CodeGuesser.new(board)
+    @code_maker = CodeMaker.new(board)
   end
 
   def input_to_index(user_input)
@@ -15,13 +15,12 @@ class Game
 
   def play_game
     loop do
-      board.display_board
       role = choose_role
 
       if role == 'guesser'
-        @CodeGuesser.play_as_guesser
+        @code_guesser.play_as_guesser
       else
-        @CodeMaker.play_as_maker
+        @code_maker.play_as_maker
       end
 
       puts 'do you wanna play again? (yes/no)'
@@ -40,11 +39,3 @@ class Game
     role
   end
 end
-
-game = Game.new
-
-game.play_game
-
-# add function to determine if the player has won
-# add function to see if the player or computer has ran out of guesses
-#

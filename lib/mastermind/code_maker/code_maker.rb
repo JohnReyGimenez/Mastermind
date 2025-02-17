@@ -5,18 +5,13 @@ class CodeMaker
     @board = board
     @attempts = 10
     @previous_guesses = []
-    @possible_codes = (1..6).to_a.repeated_permutation(4).to_a # all possible 4 digit codes
-    # from num 1 to 6
   end
 
   def play_as_maker(difficulty = :medium)
-    random_guesses = case difficulty
-                     when :easy then 6
-                     when :medium then 4
-                     when :hard then 2
-                     end
-    @attempts = 10
-    secret_code = get_player_code
+    difficulty = PlayerInput.choose_difficulty
+    secret_code = PlayerInput.get_player_code
+    @board.set_secret_code(secret_code) # Set the secret code on the board
+    guesser = ComputerGuesser.new(difficulty)
 
     while @attempts.positive?
       guess = if @previous_guesses.size < random_guesses
