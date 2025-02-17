@@ -4,12 +4,12 @@ require 'colorize'
 
 class Board
   COLORS = {
-    1 => '⚪'.colorize( :red),
-    2 => '⚪'.colorize( :blue),
+    1 => '⚪'.colorize(:red),
+    2 => '⚪'.colorize(:blue),
     3 => '⚪'.colorize(:green),
-    4 => '⚪'.colorize( :yellow),
-    5 => '⚪'.colorize( :magenta),
-    6 => '⚪'.colorize( :cyan),
+    4 => '⚪'.colorize(:yellow),
+    5 => '⚪'.colorize(:magenta),
+    6 => '⚪'.colorize(:cyan)
   }.freeze
 
   FEEDBACK_SYMBOLS = {
@@ -70,28 +70,27 @@ class Board
   end
 
   def display_board(show_secret_code: false)
+    clear_screen
+    puts 'Color Codes:'
+    puts "1: #{'Red'.colorize(:red)} | 2: #{'Blue'.colorize(:blue)} | 3: #{'Green'.colorize(:green)} |
+    4: #{'Yellow'.colorize(:yellow)} | 5: #{'Magenta'.colorize(:magenta)} | 6: #{'Cyan'.colorize(:cyan)}"
+
     if show_secret_code
       puts "Secret Code: #{COLORS[@secret_code[0]]} #{COLORS[@secret_code[1]]}
       #{COLORS[@secret_code[2]]} #{COLORS[@secret_code[3]]}"
     end
-    puts "Code:     #{COLORS[@board[0]]} #{COLORS[@board[1]]}
-    #{COLORS[@board[2]]} #{COLORS[@board[3]]}"
-    puts '         -------------'
-    puts "Feedback: #{COLORS[@board[4]]} #{COLORS[@board[5]]}
-    #{COLORS[@board[6]]} #{COLORS[@board[7]]}"
+    puts '+---------+---------+'
+    puts '|  Guess  | Feedback|'
+    puts '+---------+---------+'
+    puts "| #{COLORS[@board[0]]} #{COLORS[@board[1]]} #{COLORS[@board[2]]} #{COLORS[@board[3]]} |
+    #{feedback_to_colors(@board[4..7])} |"
+    puts '+---------+---------+'
   end
 
   def feedback_to_colors(feedback)
-    feedback.map do |peg|
-      case peg 
-      when :black '●'.colorize(:black)
-      when :white '●'.colorize(:white)
-      else
-        ' '
-      end
-    end.join(' ')
+    feedback.map { |peg| FEEDBACK_SYMBOLS[peg] || ' ' }.join(' ')
   end
-  
+
   def update_cell(index, value)
     @board[index] = value
   end
