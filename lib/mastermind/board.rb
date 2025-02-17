@@ -4,14 +4,14 @@ require 'colorize'
 
 class Board
   COLORS = {
-    1 => '  '.colorize(background: :red),
-    2 => '  '.colorize(background: :blue),
-    3 => '  '.colorize(background: :green),
-    4 => '  '.colorize(background: :yellow),
-    5 => '  '.colorize(background: :white),
-    6 => '  '.colorize(background: :black),
-    7 => '  '.colorize(background: :white),
-    8 => '  '.colorize(background: :black)
+    1 => '●'.colorize(background: :red),
+    2 => '●'.colorize(background: :blue),
+    3 => '●'.colorize(background: :green),
+    4 => '●'.colorize(background: :yellow),
+    5 => '●'.colorize(background: :white),
+    6 => '●'.colorize(background: :black),
+    7 => '●'.colorize(background: :white),
+    8 => '●'.colorize(background: :black)
   }.freeze
 
   def initialize
@@ -76,6 +76,17 @@ class Board
     puts '         -------------'
     puts "Feedback: #{COLORS[@board[4]]} #{COLORS[@board[5]]}
     #{COLORS[@board[6]]} #{COLORS[@board[7]]}"
+  end
+
+  def feedback_to_colors(feedback)
+    feedback.map do |peg|
+      case peg
+      when :black '●'.colorize(:black)
+      when :white '●'.colorize(:white)
+      else
+        ' '
+      end
+    end.join(' ')
   end
 
   def update_cell(index, value)
