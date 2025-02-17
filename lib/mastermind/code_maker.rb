@@ -28,6 +28,12 @@ class CodeMaker
       feedback = get_player_feedback(guess)
       @previous_guesses << { guess: guess, feedback: feedback }
 
+      # updates the board
+      guess.each_with_index { |value, index| @board.update_cell(index, value) }
+      feedback.each_with_index { |value, index| @board.update_cell(index, value) }
+
+      @board.display_board(show_secret_code: true)
+
       if won?(secret_code, guess)
         puts "the computer guess your code! #{guess.join(' ')}"
         return
@@ -104,6 +110,6 @@ class CodeMaker
   end
 
   def won?(secret_code, guess)
-    computer_code == secret_code
+    guess == secret_code
   end
 end
