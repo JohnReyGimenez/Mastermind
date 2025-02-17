@@ -4,14 +4,17 @@ require 'colorize'
 
 class Board
   COLORS = {
-    1 => '●'.colorize(background: :red),
-    2 => '●'.colorize(background: :blue),
-    3 => '●'.colorize(background: :green),
-    4 => '●'.colorize(background: :yellow),
-    5 => '●'.colorize(background: :white),
-    6 => '●'.colorize(background: :black),
-    7 => '●'.colorize(background: :white),
-    8 => '●'.colorize(background: :black)
+    1 => '⚪'.colorize( :red),
+    2 => '⚪'.colorize( :blue),
+    3 => '⚪'.colorize(:green),
+    4 => '⚪'.colorize( :yellow),
+    5 => '⚪'.colorize( :magenta),
+    6 => '⚪'.colorize( :cyan),
+  }.freeze
+
+  FEEDBACK_SYMBOLS = {
+    black: '●'.colorize(:black),
+    white: '●'.colorize(:black)
   }.freeze
 
   def initialize
@@ -88,7 +91,7 @@ class Board
       end
     end.join(' ')
   end
-
+  
   def update_cell(index, value)
     @board[index] = value
   end
