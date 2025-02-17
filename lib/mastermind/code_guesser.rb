@@ -11,9 +11,8 @@ class CodeGuesser
 
     while attempts.positive?
       @board.display_board
+      puts "attempts remaining: #{attempts}"
       puts 'Enter your guess(4 numbers between 1 and 6, separated by spaces):'
-      user_input = gets.chomp
-      guess = input_to_index(user_input)
 
       if valid_move?(guess)
         update_guess(guess)
@@ -34,6 +33,16 @@ class CodeGuesser
     end
 
     puts "you have ran out of guesses, the secret code was #{secret_code.join(' ')}"
+  end
+
+  def get_valid_guess
+    loop do
+      user_input = gets.chomp
+      guess = input_to_index(user_input)
+      return guess if valid_move?(guess)
+
+      puts 'Invalid input. Please enter 4 numbers between 1 and 6, separated by spaces.'
+    end
   end
 
   def update_guess(guess)
