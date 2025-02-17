@@ -6,7 +6,7 @@ class CodeGuesser
   end
 
   def play_as_guesser
-    secret_code = Array.new(4) { rand(1..6) }
+    secret_code = (1..6).to_a.shuffle.take(4)
     attempts = 10
 
     while attempts.positive?
@@ -51,5 +51,9 @@ class CodeGuesser
     exact_matches = secret_code.zip(guess).count { |s, g| s == g } # counts how many pairs are exact matches
     correct_colors = (secret_code & guess).size - exact_matches # gives exact number of correct colors in wrong position
     [:black] * exact_matches + [:white] * correct_colors # creates am array of of feedback symbols
+  end
+
+  def input_to_index(input)
+    input.split.map(&:to_i)
   end
 end
