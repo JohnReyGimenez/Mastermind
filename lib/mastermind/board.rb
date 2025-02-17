@@ -72,8 +72,7 @@ class Board
   def display_board(show_secret_code: false)
     clear_screen
     puts 'Color Codes:'
-    puts "1: #{'Red'.colorize(:red)} | 2: #{'Blue'.colorize(:blue)} | 3: #{'Green'.colorize(:green)} |
-    4: #{'Yellow'.colorize(:yellow)} | 5: #{'Magenta'.colorize(:magenta)} | 6: #{'Cyan'.colorize(:cyan)}"
+    puts "1: #{'Red'.colorize(:red)} | 2: #{'Blue'.colorize(:blue)} | 3: #{'Green'.colorize(:green)} | 4: #{'Yellow'.colorize(:yellow)} | 5: #{'Magenta'.colorize(:magenta)} | 6: #{'Cyan'.colorize(:cyan)}"
 
     if show_secret_code
       puts "Secret Code: #{COLORS[@secret_code[0]]} #{COLORS[@secret_code[1]]}
@@ -82,8 +81,7 @@ class Board
     puts '+---------+---------+'
     puts '|  Guess  | Feedback|'
     puts '+---------+---------+'
-    puts "| #{COLORS[@board[0]]} #{COLORS[@board[1]]} #{COLORS[@board[2]]} #{COLORS[@board[3]]} |
-    #{feedback_to_colors(@board[4..7])} |"
+    puts "| #{COLORS[@board[0]]}  #{COLORS[@board[1]]}  #{COLORS[@board[2]]}  #{COLORS[@board[3]]}  |  #{feedback_to_colors(@board[4..7])}|"
     puts '+---------+---------+'
   end
 
@@ -97,5 +95,9 @@ class Board
 
   def clear_screen
     system('clear') || system('cls')
+  end
+
+  def set_secret_code(code)
+    @secret_code = code
   end
 end
