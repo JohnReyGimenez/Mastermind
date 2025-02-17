@@ -14,14 +14,15 @@ class CodeGuesser
       puts "attempts remaining: #{attempts}"
       puts 'Enter your guess(4 numbers between 1 and 6, separated by spaces):'
 
-      if valid_move?(guess)
-        update_guess(guess)
-        feedback = generate_feedback(secret_code, guess)
-        @board.update_cell(4, feedback[0])
-        @board.update_cell(5, feedback[1])
-        @board.update_cell(6, feedback[2])
-        @board.update_cell(7, feedback[3])
-      end
+      # gets user input
+      guess = get_valid_guess
+      next unless guess # skip if guess is invalid
+
+      update_guess(guess)
+
+      # generates feedback and updates board
+      feedback = generate_feedback(secret_code, guess)
+      update_feedback(feedback)
 
       if guess == secret_code
         puts 'you guessed the code!'
@@ -29,7 +30,6 @@ class CodeGuesser
       end
 
       attempts -= 1
-      puts "attempts remaining: #{attempts}"
     end
 
     puts "you have ran out of guesses, the secret code was #{secret_code.join(' ')}"
@@ -48,6 +48,12 @@ class CodeGuesser
   def update_guess(guess)
     guess.each_with_index do |value, index|
       @board.update_cell(index, value)
+    end
+  end
+
+  def update_feedback
+    feedback.each_with_index do |value, index|
+      @board.update_cell(index + 4, value)
     end
   end
 
