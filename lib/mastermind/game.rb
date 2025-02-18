@@ -25,7 +25,11 @@ class Game
 
       puts 'do you wanna play again? (yes/no)'
       play_again = gets.chomp.downcase
-      break unless play_again == 'yes'
+      until [yes, no].include?(play_again)
+        puts 'Invalid Input. enter "yes" or "no".'
+        play_again =  gets.chomp.downcase
+      end
+      break if play_again == 'no'
     end
   end
 
