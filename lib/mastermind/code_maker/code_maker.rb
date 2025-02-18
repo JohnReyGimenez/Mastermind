@@ -11,13 +11,14 @@ class CodeMaker
     difficulty = PlayerInput.choose_difficulty
     secret_code = PlayerInput.get_player_code
     @board.set_secret_code(secret_code) # Set the secret code on the board
+    @board.display_board(secret_code: true)
     guesser = ComputerGuesser.new(difficulty)
 
     while @attempts.positive?
       play_turn(guesser, secret_code)
 
       # checks if computer correctly guessed the code
-      if won?(secret_code, previous_guesses.last[:feedback])
+      if won?(secret_code, @previous_guesses.last[:feedback])
         puts "the computer guess your code! #{guess.join(' ')}"
         return
       end
@@ -28,7 +29,7 @@ class CodeMaker
     puts 'the computer has failed in guessing your secret code. You win!!'
   end
 
-  def play_turn(guesser, secret_code)
+  def play_turn(guesser, _secret_code)
     # generate computers next code
     guess = guesser.next_guess(@previous_guesses)
     puts "Computers guess: #{guess.join(' ')}"
