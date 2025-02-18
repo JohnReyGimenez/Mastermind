@@ -51,21 +51,30 @@ class CodeGuesser
     end
   end
 
-  def update_feedback
+  def update_feedback(feedback)
     feedback.each_with_index do |value, index|
       @board.update_cell(index + 4, value)
     end
   end
 
   def valid_move?(guess)
-    guess.size == 4 && guess.all? { |num| num.between?(1, 6) } # checks if guess is between 1 and 6
+    # checks if guess is between 1 and 6 and ensures all numbers are not repeating
+    guess.size == 4 && guess.all? { |num| num.between?(1, 6) } && guess.uniq.size == 4
   end
 
   def generate_feedback(secret_code, guess)
     # creates nested array of pairs from the secret code  and the guess
-    exact_matches = secret_code.zip(guess).count { |s, g| s == g } # counts how many pairs are exact matches
-    correct_colors = (secret_code & guess).size - exact_matches # gives exact number of correct colors in wrong position
-    [:black] * exact_matches + [:white] * correct_colors # creates am array of of feedback symbols
+    # counts how many pairs are exact matches
+    exact_matches = secret_code.zip(guess).count { |s, g| s == g }
+
+    # counts correct colors in wrong positions
+    secret_counts = secret_code.each_with_object(Hash.new(0)) { |num, hash| hash[num] += 1 }
+    guess_counts = guess.each_with_object(Hash.new(0)) { |num, hash| hash[num] += 1 }
+
+    correct_colors = secret_counts.sum { |num, count| [count, guess_counts[num]].min } - exact_matches
+
+    # creates am array of of feedback symbols
+    [:black] * exact_matches + [:white] * correct_colors
   end
 
   def input_to_index(input)
