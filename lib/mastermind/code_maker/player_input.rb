@@ -34,8 +34,10 @@ module PlayerInput
       puts 'Choose difficulty (easy, medium, hard):'
       difficulty = gets.chomp.downcase.to_sym
 
-      return difficulty if %i[easy medium hard].include?(difficulty)
-
+      if %i[easy medium hard].include?(difficulty)
+        clear_screen
+        return difficulty
+      end
       puts 'Invalid choice. Enter "easy", "medium", or "hard"'
     end
   end
