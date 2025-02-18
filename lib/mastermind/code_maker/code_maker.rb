@@ -34,12 +34,12 @@ class CodeMaker
     puts "Computers guess: #{guess.join(' ')}"
 
     # gets feedback from player
-    feedback = get_player_feedback(guess)
+    feedback = PlayerInput.get_player_feedback
     @previous_guesses << { guess: guess, feedback: feedback }
 
     # updates the board
     guess.each_with_index { |value, index| @board.update_cell(index, value) }
-    feedback.each_with_index { |value, index| @board.update_cell(index, value) }
+    (0..4).each { |i| @board.update_cell(i + 4, feedback[i] || ' ') }
 
     @board.display_board(show_secret_code: true)
   end
