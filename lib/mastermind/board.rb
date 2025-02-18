@@ -81,7 +81,7 @@ class Board
     puts '+---------+---------------------+'
     puts '|      Guess       |  Feedback  |'
     puts '+---------+---------------------+'
-    puts "| #{COLORS[@board[0]]}  #{COLORS[@board[1]]}  #{COLORS[@board[2]]}  #{COLORS[@board[3]]}  |  #{feedback_to_colors(@board[4..7])}|"
+    puts "| #{COLORS[@board[0]]}  #{COLORS[@board[1]]}  #{COLORS[@board[2]]}  #{COLORS[@board[3]]}   | #{feedback_to_colors(@board[4..7])} |"
     puts '+---------+---------------------+'
   end
 
@@ -93,7 +93,7 @@ class Board
     @board[index] = value
   end
 
-  def clear_screen
+  def self.clear_screen
     system('clear') || system('cls')
   end
 
