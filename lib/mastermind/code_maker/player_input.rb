@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module PlayerInput
-  def self.get_player_feedback(guess)
+  def self.get_player_feedback
     loop do
       puts "Provide feedback for the computer's guess (e.g., '1 1 2 2' for two whites and two blacks):"
       feedback = gets.chomp.split.map(&:to_i)
@@ -27,10 +29,14 @@ module PlayerInput
     code.size == 4 && code.all? { |num| num.between?(1, 6) }
   end
 
-  def self.choose_difficuly
-    puts 'Choose difficulty (easy, medium, hard):'
-    difficulty = gets.chomp.downcase.to_sym
-    puts 'Invalid choice. Enter "easy", "medium", or "hard"' until %i[easy medium hard].include?(difficulty)
-    difficulty
+  def self.choose_difficulty
+    loop do
+      puts 'Choose difficulty (easy, medium, hard):'
+      difficulty = gets.chomp.downcase.to_sym
+
+      return difficulty if %i[easy medium hard].include?(difficulty)
+
+      puts 'Invalid choice. Enter "easy", "medium", or "hard"'
+    end
   end
 end
