@@ -4,14 +4,15 @@ class CodeMaker
   def initialize(board)
     @board = board
     @attempts = 10
-    @previous_guesses = []
+    @guess_history = []
+    @feedback_history = []
   end
 
   def play_as_maker
     difficulty = PlayerInput.choose_difficulty
     secret_code = PlayerInput.get_player_code
     @board.set_secret_code(secret_code) # Set the secret code on the board
-    @board.display_board(secret_code: true)
+    @board.display_board(show_secret_code: true)
     guesser = ComputerGuesser.new(difficulty)
 
     while @attempts.positive?
@@ -37,12 +38,13 @@ class CodeMaker
     # gets feedback from player
     feedback = PlayerInput.get_player_feedback
     @previous_guesses << { guess: guess, feedback: feedback }
+    @feedback_history << feedback
 
     # updates the board
     guess.each_with_index { |value, index| @board.update_cell(index, value) }
     (0..4).each { |i| @board.update_cell(i + 4, feedback[i] || ' ') }
 
-    @board.display_board(show_secret_code: true)
+    @board.display_code_maker_board(@guess_history.map { |g| g[:guess] }, @feedback_history)
   end
 
   def won?(secret_code, guess)
