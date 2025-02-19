@@ -85,6 +85,25 @@ class Board
     puts '+---------+---------------------+'
   end
 
+  def display_code_maker_board(guesses, feedback)
+    puts 'Color Codes:'
+    puts "1: #{'Red'.colorize(:red)} | 2: #{'Blue'.colorize(:blue)} | 3: #{'Green'.colorize(:green)} | 4: #{'Yellow'.colorize(:yellow)} | 5: #{'Magenta'.colorize(:magenta)} | 6: #{'Cyan'.colorize(:cyan)}"
+
+    puts "\nSecret Code: #{COLORS[@secret_code[0]]} #{COLORS[@secret_code[1]]} #{COLORS[@secret_code[2]]} #{COLORS[@secret_code[3]]}\n\n"
+
+    puts '+---------+---------------------+'
+    puts '|    Computer Guess   |  Feedback  |'
+    puts '+---------+---------------------+'
+
+    guesses.each_with_index do |guess, index|
+      guess_display = guess.map { |num| COLORS[num] }.join(' ')
+      feedback_display = feedback[index]&.map { |peg| FEEDBACK_SYMBOLS[peg] || ' ' }&.join(' ') || ''
+      puts "| #{guess_display} | #{feedback_display.ljust(7)} |"
+    end
+
+    puts '+---------+---------------------+'
+  end
+
   def feedback_to_colors(feedback)
     feedback.map { |peg| FEEDBACK_SYMBOLS[peg] || ' ' }.join(' ').ljust(7)
   end
@@ -93,7 +112,7 @@ class Board
     @board[index] = value
   end
 
-  def self.clear_screen
+  def clear_screen
     system('clear') || system('cls')
   end
 
