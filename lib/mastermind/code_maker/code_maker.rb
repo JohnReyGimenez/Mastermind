@@ -12,14 +12,13 @@ class CodeMaker
     difficulty = PlayerInput.choose_difficulty
     secret_code = PlayerInput.get_player_code
     @board.set_secret_code(secret_code) # Set the secret code on the board
-    @board.display_board(show_secret_code: true)
     guesser = ComputerGuesser.new(difficulty)
 
     while @attempts.positive?
       play_turn(guesser, secret_code)
 
       # checks if computer correctly guessed the code
-      if won?(secret_code, @previous_guesses.last[:feedback])
+      if won?(secret_code, @guess_history.last[:feedback])
         puts "the computer guess your code! #{guess.join(' ')}"
         return
       end
@@ -32,19 +31,30 @@ class CodeMaker
 
   def play_turn(guesser, _secret_code)
     # generate computers next code
-    guess = guesser.next_guess(@previous_guesses)
+    guess = guesser.next_guess(@guess_history)
     puts "Computers guess: #{guess.join(' ')}"
 
     # gets feedback from player
     feedback = PlayerInput.get_player_feedback
-    @previous_guesses << { guess: guess, feedback: feedback }
+    @guess_history << { guess: guess, feedback: feedback }
     @feedback_history << feedback
 
     # updates the board
-    guess.each_with_index { |value, index| @board.update_cell(index, value) }
-    (0..4).each { |i| @board.update_cell(i + 4, feedback[i] || ' ') }
+    update_board_with_guess_and_feedback(guess, feedback)
 
     @board.display_code_maker_board(@guess_history.map { |g| g[:guess] }, @feedback_history)
+  end
+
+  def update_board_with_guess_and_feedback(guess, feedback)
+    # updtates guess cells
+    guess.each_with_index do |value, index|
+      @board.update_cell(index, value)
+    end
+
+    # updates feedback cells
+    feedback.each_with_index do |value, index|
+      @board.update_cell(index + 4, value)
+    end
   end
 
   def won?(secret_code, guess)
