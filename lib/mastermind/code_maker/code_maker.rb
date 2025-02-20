@@ -19,7 +19,7 @@ class CodeMaker
 
       # checks if computer correctly guessed the code
       if won?(secret_code, @guess_history.last[:guess])
-        puts "the computer guess your code! #{guess.join(' ')}"
+        puts "the computer guess your code! #{@guess_history.last[:guess].join(' ')}"
         return
       end
 
@@ -30,11 +30,11 @@ class CodeMaker
   end
 
   def play_turn(guesser, _secret_code)
+    @board.display_code_maker_board(@guess_history.map { |g| g[:guess] }, @feedback_history)
+
     # generate computers next code
     guess = guesser.next_guess(@guess_history)
     puts "Computers guess: #{guess.join(' ')}"
-
-    @board.display_code_maker_board(@guess_history.map { |g| g[:guess] }, @feedback_history)
 
     # gets feedback from player
     feedback = PlayerInput.get_player_feedback
@@ -60,6 +60,6 @@ class CodeMaker
   end
 
   def won?(secret_code, guess)
-    last_guess == secret_code
+    guess == secret_code
   end
 end
