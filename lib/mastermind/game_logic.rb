@@ -1,7 +1,17 @@
+# frozen_string_literal: true
+
 module GameLogic
   def refine_based_on_feedback(feedback)
     last_guess = @guess_history.last[:guess]
     new_guess = last_guess.dup
+
+    feedback.each_with_index do |peg, i|
+      if peg == :black
+        next
+      elsif peg == :white
+
+      end
+    end
 
     if feedback[0..1].any? { |peg| %i[black white].include?(peg) }
       new_guess[0] = rand(1..6).to_a.reject { |n| n == last_guess[0] }.sample unless feedback[0] == :black
@@ -20,6 +30,14 @@ module GameLogic
       end
     end
     new_guess
+  end
+
+  def find_swap_index(guess, current_index)
+    # finds next index if isnt correct
+    (current_index + 1..guess.size).find do |i|
+      guess[i] != @secret_code[i]
+    end || 0
+    # go back to 0 if no valid index is found
   end
 
   def generate_feedback(secret_code, guess)
