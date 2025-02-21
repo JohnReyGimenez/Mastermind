@@ -40,6 +40,11 @@ module GameLogic
     # go back to 0 if no valid index is found
   end
 
+  def generate_new_color(guess, current_index)
+    available_colors = (1..6).to_a - [guess[current_index]]
+    available_colors.sample
+  end
+
   def generate_feedback(secret_code, guess)
     # creates nested array of pairs from the secret code  and the guess
     # counts how many pairs are exact matches
