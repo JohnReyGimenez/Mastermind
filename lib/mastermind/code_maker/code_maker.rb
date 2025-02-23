@@ -38,12 +38,12 @@ class CodeMaker
     guess = guesser.next_guess(@guess_history)
     puts "Computers guess: #{guess.join(' ')}"
 
-    # adds guess to history
-    @guess_history << { guess: guess, feedback: feedback }
-    @feedback_history << feedback
-
     # updates board with new guess
     update_board_with_guess_and_feedback(guess, [])
+
+    # adds guess to history
+    @guess_history << { guess: guess, feedback: [] }
+    @feedback_history << []
 
     # display board again with new guess
     @board.display_code_maker_board(@guess_history.map { |g| g[:guess] }, @feedback_history)
