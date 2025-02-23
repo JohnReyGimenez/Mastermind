@@ -38,6 +38,10 @@ class CodeMaker
     guess = guesser.next_guess(@guess_history)
     puts "Computers guess: #{guess.join(' ')}"
 
+    # adds guess to history
+    @guess_history << { guess: guess, feedback: feedback }
+    @feedback_history << feedback
+
     # updates board with new guess
     update_board_with_guess_and_feedback(guess, [])
 
@@ -46,8 +50,8 @@ class CodeMaker
 
     # gets feedback from player
     feedback = PlayerInput.get_player_feedback
-    @guess_history << { guess: guess, feedback: feedback }
-    @feedback_history << feedback
+    @guess_history.last[:feedback] = feedback
+    @feedback_history[-1] = feedback
 
     # updates the board
     update_board_with_guess_and_feedback(guess, feedback)
@@ -67,6 +71,8 @@ class CodeMaker
   end
 
   def won?(secret_code, guess)
+    puts "Debug: Secret Code: #{secret_code.inspect}"
+    puts "Debug: Guess: #{guess.inspect}"
     guess == secret_code
   end
 end
