@@ -98,17 +98,17 @@ class Board
 
     guesses.each_with_index do |guess, index|
       guess_display = guess.map { |num| COLORS[num] }.join(' ')
-      feedback_display = feedback[index]&.map { |peg| FEEDBACK_SYMBOLS[peg] || ' ' }&.join(' ') || ''
-      puts "| #{guess_display} | #{feedback_display.ljust(7)} |"
+      feedback_display = feedback[index]&.map { |peg| FEEDBACK_SYMBOLS[peg] || '  ' }&.join(' ') || ''
+      puts "|    #{guess_display.ljust(15)}      | #{feedback_display.ljust(10)} |"
     end
 
-    puts '+---------+---------------------+'
+    puts '+---------+------------------------+'
   end
 
   def feedback_to_colors(feedback)
     # makes sure feedback is always 4 elements
     feedback = feedback[0..3] || Array.new(4, nil)
-    feedback.map { |peg| FEEDBACK_SYMBOLS[peg] || ' ' }.join(' ').ljust(7)
+    feedback.map { |peg| FEEDBACK_SYMBOLS[peg] || '  ' }.join(' ').ljust(7)
   end
 
   def update_cell(index, value)
