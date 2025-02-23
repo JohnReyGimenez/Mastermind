@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require_relative '../game_logic'
+
 class CodeMaker
+  include GameLogic
+
   def initialize(board)
     @board = board
     @attempts = 10

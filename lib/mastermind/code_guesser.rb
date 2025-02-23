@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'game_logic'
+
 class CodeGuesser
+  include GameLogic
+
   def initialize(board)
     @board = board
   end
