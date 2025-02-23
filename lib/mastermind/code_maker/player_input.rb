@@ -12,7 +12,7 @@ module PlayerInput
   end
 
   def self.valid_feedback?(feedback)
-    feedback.size <= 4 && feedback.all? { |n| [1, 2].include?(n) }
+    feedback.size == 4 && feedback.all? { |n| [1, 2].include?(n) }
   end
 
   def self.get_player_code
@@ -35,7 +35,7 @@ module PlayerInput
       difficulty = gets.chomp.downcase.to_sym
 
       if %i[easy medium hard].include?(difficulty)
-        clear_screen
+        system('clear') || system('cls')
         return difficulty
       end
       puts 'Invalid choice. Enter "easy", "medium", or "hard"'
