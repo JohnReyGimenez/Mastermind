@@ -34,11 +34,15 @@ class CodeMaker
   end
 
   def play_turn(guesser, _secret_code)
-    @board.display_code_maker_board(@guess_history.map { |g| g[:guess] }, @feedback_history)
-
     # generate computers next code
     guess = guesser.next_guess(@guess_history)
     puts "Computers guess: #{guess.join(' ')}"
+
+    # updates board with new guess
+    update_board_with_guess_and_feedback(guess, [])
+
+    # display board again with new guess
+    @board.display_code_maker_board(@guess_history.map { |g| g[:guess] }, @feedback_history)
 
     # gets feedback from player
     feedback = PlayerInput.get_player_feedback
@@ -47,7 +51,6 @@ class CodeMaker
 
     # updates the board
     update_board_with_guess_and_feedback(guess, feedback)
-
     @board.display_code_maker_board(@guess_history.map { |g| g[:guess] }, @feedback_history)
   end
 
