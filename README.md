@@ -46,5 +46,5 @@ Welcome to Mastermind, a classic code-breaking game where you can either guess a
 
 ### Prerequisites
 - **Ruby**: Ensure Ruby is installed on your system. You can check by running:
-  ```bash
-  # Put bash here: ruby -v
+  ```
+ 
