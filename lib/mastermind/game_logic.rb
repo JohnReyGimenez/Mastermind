@@ -1,17 +1,21 @@
 # frozen_string_literal: true
 
 module GameLogic
+  # this module manages the shared logic for generating feedback and refining guesses
   def refine_based_on_feedback(feedback)
     last_guess = @guess_history.last[:guess]
     new_guess = last_guess.dup
 
     feedback.each_with_index do |peg, i|
       if peg == :black
+        # keep correct color
         next
       elsif peg == :white
+        # swap with different position
         swap_index = find_swap_index(new_guess, i)
         new_guess[i], new_guess[swap_index] = new_guess[swap_index], new_guess[i]
       else
+        # tries new color for current position
         new_guess[i] = generate_new_color(new_guess, i)
       end
     end

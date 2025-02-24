@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ComputerGuesser
+  # this class handles the computers guessing logic
   def initialize(difficulty)
     @difficulty = difficulty
     @random_guesses = case difficulty

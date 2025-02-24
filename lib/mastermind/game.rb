@@ -3,6 +3,7 @@
 require 'colorize'
 
 class Game
+  # this class manages the game loop and player roles
   def initialize(board)
     @board = board
     @code_guesser = CodeGuesser.new(@board)

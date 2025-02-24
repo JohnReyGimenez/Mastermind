@@ -3,7 +3,10 @@
 require 'colorize'
 
 class Board
+  # this class manages the game board, that includes displaying the board
+  # ,updating the cells, and handling the secret codes
   COLORS = {
+    # hashes key is numbers 1-6 and value is the color assigned to the number
     1 => '  '.colorize(background: :red),
     2 => '  '.colorize(background: :blue),
     3 => '  '.colorize(background: :green),

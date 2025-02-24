@@ -3,6 +3,7 @@
 require_relative 'game_logic'
 
 class CodeGuesser
+  # this class manages the code guesser role
   include GameLogic
 
   def initialize(board)

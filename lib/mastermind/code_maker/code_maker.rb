@@ -3,6 +3,7 @@
 require_relative '../game_logic'
 
 class CodeMaker
+  # this class manages the code maker role
   include GameLogic
 
   def initialize(board)
@@ -71,8 +72,6 @@ class CodeMaker
   end
 
   def won?(secret_code, guess)
-    puts "Debug: Secret Code: #{secret_code.inspect}"
-    puts "Debug: Guess: #{guess.inspect}"
     guess == secret_code
   end
 end

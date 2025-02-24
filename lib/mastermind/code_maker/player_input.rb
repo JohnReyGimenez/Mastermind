@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PlayerInput
+  # this module handles player input and validation
   def self.get_player_feedback
     loop do
       puts "Provide feedback for the computer's guess (e.g., '1 1 2 2' for two whites and two blacks):"
