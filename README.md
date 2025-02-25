@@ -1,6 +1,6 @@
 # Mastermind Game
 
-Welcome to Mastermind, a classic code-breaking game where you can either guess a secret code or create one for the computer to guess. This project is implemented in Ruby and uses the `colorize` gem for a colorful terminal experience.
+Welcome to Mastermind, a classic code-breaking game where you can either guess a secret code or create one for the computer to guess. This project is implemented in Ruby and uses the `colorize` gem.
 
 ---
 
@@ -83,8 +83,8 @@ To run the game locally, execute the main mastermind file. Follow the on-screen 
 
 ## Known Issues
 UI Alignment in Code Maker Role:
-
 When playing as the code maker, the feedback section of the UI may break or misalign after the computer makes its first guess.
+
 ---
 
 ## Optimizations
