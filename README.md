@@ -83,8 +83,8 @@ To run the game locally, execute the main mastermind file. Follow the on-screen 
 
 ## Known Issues
 UI Alignment in Code Maker Role:
-When playing as the code maker, the feedback section of the UI may break or misalign after the computer makes its first guess.
-
+- When playing as the code maker, the feedback section of the UI may break or misalign after the computer makes its first guess.
+- When playing as the code maker, the board doesnt update correctly but instead stacks the colors on each other.
 ---
 
 ## Optimizations
