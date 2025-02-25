@@ -14,6 +14,7 @@ Welcome to Mastermind, a classic code-breaking game where you can either guess a
 7. [Running the Game](#running-the-game)
 8. [Running Tests](#running-tests)
 9. [Credits](#credits)
+10. [Licence](#License)
 
 ---
 
@@ -121,6 +122,11 @@ This project does not currently include a test suite. However, you can manually 
 - **Developer**: John Rey G. Gimenez
 - **Inspiration**: Classic Mastermind game.
 - **Tools**: Ruby, `colorize` gem.
+
+---
+
+### License
+This project is open-source and available under the  [MIT License](LICENSE).
 
 ---
 
