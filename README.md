@@ -13,8 +13,7 @@ Welcome to Mastermind, a classic code-breaking game where you can either guess a
 6. [Lessons Learned](#lessons-learned)
 7. [Running the Game](#running-the-game)
 8. [Running Tests](#running-tests)
-9. [Bug Tracker](#bug-tracker)
-10. [Credits](#credits)
+9. [Credits](#credits)
 
 ---
 
@@ -46,18 +45,36 @@ Welcome to Mastermind, a classic code-breaking game where you can either guess a
 
 ### Prerequisites
 - **Ruby**: Ensure Ruby is installed on your system.
+   ```bash
+  ruby -v
 - **Bundler**: Install Bundler to manage dependencies.
+  ```bash
+   gem install bundler
+---
+
+## Running the Game
+To run the game locally, execute the main mastermind file. Follow the on-screen instructions to play.
 
 ### Steps
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Install dependencies using Bundler.
-4. Run the game.
+1. Fork the Repository:
+   - Go to the [Mastermind[](https://github.com/JohnReyGimenez/Mastermind) repository and click the Fork button to create your own copy of the project.
+2. Clone the repository.
+   ```bash
+   git clone git@github.com:JohnReyGimenez/Mastermind.git
+3. Navigate to the project directory.
+   ```bash
+   cd lib
+4. Install dependencies using Bundler.
+   ```bash
+   bundle install
+5. Run the game.
+   ```bash
+   ruby mastermind.rb
 
 ---
 
 ## Replit Setup
-1. Fork the project on Replit.
+1. Fork the project on [Replit](https://replit.com/@gimenezjr5/Tic-Tac-Toe?v=1).
 2. Click the **Run** button to start the game.
 3. Follow the on-screen instructions to play.
 
@@ -92,11 +109,6 @@ Here are the key optimizations made during development:
 - **UI Design**: Gained experience in designing a clean and user-friendly terminal interface.
 - **Refactoring**: Improved code readability and maintainability by reducing duplication and separating concerns.
 - **Feedback Logic**: Developed a deeper understanding of how to process and display feedback in a code-breaking game.
-
----
-
-## Running the Game
-To run the game locally, execute the main Ruby file. Follow the on-screen instructions to play.
 
 ---
 
