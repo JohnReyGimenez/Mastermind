@@ -74,13 +74,6 @@ To run the game locally, execute the main mastermind file. Follow the on-screen 
 
 ---
 
-## Replit Setup
-1. Fork the project on [Replit](https://replit.com/@gimenezjr5/Tic-Tac-Toe?v=1).
-2. Click the **Run** button to start the game.
-3. Follow the on-screen instructions to play.
-
----
-
 ## Known Issues
 UI Alignment in Code Maker Role:
 - When playing as the code maker, the feedback section of the UI may break or misalign after the computer makes its first guess.
