@@ -19,7 +19,7 @@ Welcome to Mastermind, a classic code-breaking game where you can either guess a
 ---
 
 ## How to Play
-Mastermind is a two-player game where one player creates a secret code, and the other tries to guess it. The game is played using a set of colored pegs (represented by numbers in this version). The Code Guesser has 10 attempts to crack the code, while the Code Maker provides feedback after each guess to guide the guesser.
+Mastermind is a two-player game where one player creates a secret code, and the other tries to guess it. The game is played using a set of colored pegs. The Code Guesser has 10 attempts to crack the code, while the Code Maker provides feedback after each guess to guide the guesser.
 
 ### Roles
 - **Code Guesser**: You have 10 attempts to guess the secret code.
