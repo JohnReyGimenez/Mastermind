@@ -58,7 +58,7 @@ To run the game locally, execute the main mastermind file. Follow the on-screen 
 
 ### Steps
 1. Fork the Repository:
-   - Go to the [Mastermind[](https://github.com/JohnReyGimenez/Mastermind) repository and click the Fork button to create your own copy of the project.
+   - Go to the [Mastermind](https://github.com/JohnReyGimenez/Mastermind) repository and click the Fork button to create your own copy of the project.
 2. Clone the repository.
    ```bash
    git clone git@github.com:JohnReyGimenez/Mastermind.git
