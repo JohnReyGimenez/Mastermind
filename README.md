@@ -78,7 +78,7 @@ To run the game locally, execute the main mastermind file. Follow the on-screen 
 ## Known Issues
 UI Alignment in Code Maker Role:
 - When playing as the code maker, the feedback section of the UI may break or misalign after the computer makes its first guess.
-- When playing as the code maker, the board doesnt update correctly but instead stacks the colors on each other.
+- When playing as the code maker, the board wont update correctly, but instead will stack the colors on each other.
 ---
 
 ## Optimizations
@@ -96,14 +96,6 @@ Here are the key optimizations made during development:
   - Extracted common logic (e.g., `update_guess`, `update_feedback`) into a `GameLogic` module for reuse across classes.
 - **Error Handling**:
   - Added input validation for guesses and feedback to prevent crashes.
-
----
-
-## Lessons Learned
-- **ANSI Escape Codes**: Learned how to handle hidden characters added by the `colorize` gem to ensure proper string alignment.
-- **UI Design**: Gained experience in designing a clean and user-friendly terminal interface.
-- **Refactoring**: Improved code readability and maintainability by reducing duplication and separating concerns.
-- **Feedback Logic**: Developed a deeper understanding of how to process and display feedback in a code-breaking game.
 
 ---
 
