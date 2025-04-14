@@ -7,14 +7,13 @@ Welcome to Mastermind, a classic code-breaking game where you can either guess a
 ## Table of Contents
 1. [How to Play](#how-to-play)
 2. [Local Setup](#local-setup)
-3. [Replit Setup](#replit-setup)
-4. [Known Issues](#known-issues)
-5. [Optimizations](#optimizations)
-6. [Lessons Learned](#lessons-learned)
-7. [Running the Game](#running-the-game)
-8. [Running Tests](#running-tests)
-9. [Credits](#credits)
-10. [Licence](#License)
+3. [Known Issues](#known-issues)
+4. [Optimizations](#optimizations)
+5. [Lessons Learned](#lessons-learned)
+6. [Running the Game](#running-the-game)
+7. [Running Tests](#running-tests)
+8. [Credits](#credits)
+9. [Licence](#License)
 
 ---
 
